@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Button, View, Keyboard, ScrollView, AsyncStorage } from 'react-native';
-import VinLookup from './vin';
-import VehLookup from './lookUp';
+import VinLookup from './vinLookup';
+import VehLookup from './vehLookup';
 import axios from 'axios';
 
 export default class PersVehScreen extends React.Component {

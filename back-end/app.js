@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const post = require('./postVeh');
 const get = require('./postQuote');
 const mongoose = require('mongoose');
+require('./services/cache');
+
 
 mongoose.connect(
     process.env.DB_CONNECTION,

@@ -18,13 +18,11 @@ export default class QuoteLookupScreen extends React.Component {
             })
             .then(res => {
                 AsyncStorage.clear();
-    
                 if(!res.data.error) {
-                    if(res.data.length > 0) {
-                        for(let i = 0; i < res.data.length; i++) {
-                            let store = `${res.data[i].year} ${res.data[i].make} ${res.data[i].model}`
-                            console.log(store);
-                            AsyncStorage.setItem(store.toUpperCase(), JSON.stringify([res.data[i].make, res.data[i].model, res.data[i].year]));
+                    if(res.data[0].vehArr.length > 0) {
+                        for(let i = 0; i < res.data[0].vehArr.length; i++) {
+                            let store = `${res.data[0].vehArr[i].year} ${res.data[0].vehArr[i].make} ${res.data[0].vehArr[i].model}`
+                            AsyncStorage.setItem(store.toUpperCase(), JSON.stringify([res.data[0].vehArr[i].make, res.data[0].vehArr[i].model, res.data[0].vehArr[i].year]));
                             AsyncStorage.setItem('quoteNumber', this.state.quoteNumber);
                         }
                     } else {

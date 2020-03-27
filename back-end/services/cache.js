@@ -13,6 +13,10 @@ mongoose.Query.prototype.cache = function(options = {}) {
 }
 
 mongoose.Query.prototype.exec = async function() {
+    // If current query does not use cache then execute normal .exec function
+    if(!this.useCache) {
+        return exec.apply(this, arguments);
+    }
 
     // Do we have any cached data in redis related to this query
     const cachedValue = await client.get(this.hashKey);

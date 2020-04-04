@@ -1,7 +1,6 @@
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import 'react-native-gesture-handler';
-import React from 'react';
 import PersVehScreen from './pers-veh/vehicle'
 import QuoteLookupScreen from './pers-veh/quoteLookup/quoteLookup'
 

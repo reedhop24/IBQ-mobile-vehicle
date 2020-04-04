@@ -29,6 +29,7 @@ export default class PersVehScreen extends React.Component {
         })
     }
 
+    // GET VIN from NHTSA API 
     submitVin() {
         axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/${this.state.vin}?format=json`)
             .then(res => {
@@ -51,6 +52,7 @@ export default class PersVehScreen extends React.Component {
         Keyboard.dismiss();
     }
 
+    // Validate Veh entered against NHTSA's GetModelsForMakeYear API and set to Async Storage
     validateVeh() {
         if(this.state.make && this.state.model && this.state.year) {
             axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${this.state.make}/modelyear/${this.state.year}?format=json`)
@@ -124,6 +126,7 @@ export default class PersVehScreen extends React.Component {
         })();
     }
 
+    // User selects garage info which means all current vehicles are final and to be sent to DB
     subToDB() {
         (async () => {
             const keys = await AsyncStorage.getAllKeys();
@@ -179,7 +182,7 @@ export default class PersVehScreen extends React.Component {
                         />
                     </View> 
                 : null}
-
+    
                 {this.state.status && !this.state.verified ? 
                     <ScrollView style={styles.vehContainer}>
                         <VinLookup onChange={(i) => this.setState({vin: i})} subVin={() => this.submitVin()}/>

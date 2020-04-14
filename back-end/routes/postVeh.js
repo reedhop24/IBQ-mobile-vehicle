@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const Model = require('./model');
-const { clearHash } = require('./services/cache');
+const Model = require('../models/model');
+const { clearHash } = require('../services/cache');
 require('dotenv/config');
 router.use(bodyParser.json());
 

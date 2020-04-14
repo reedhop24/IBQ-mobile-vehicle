@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const Model = require('./model');
+const Model = require('../models/model');
 require('dotenv/config')
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}))

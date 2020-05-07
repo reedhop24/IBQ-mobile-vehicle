@@ -52,7 +52,7 @@ function VehLookup(props) {
     )
 }
 
-export default VehLookup
+export default VehLookup;
 
 const styles = {
     innerButtonContainer: {

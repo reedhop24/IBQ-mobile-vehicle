@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export default class PersVehScreen extends React.Component {
     constructor() {
-        super();
+        super(props);
         this.state = {
             status: false,
             vin: null,
@@ -18,7 +18,7 @@ export default class PersVehScreen extends React.Component {
         }
     }
 
-    handleDisplay() {
+    handleDisplay = () => {
         this.setState({
             status: this.state.verified ? true : !this.state.status,
             vin: null,
@@ -30,7 +30,7 @@ export default class PersVehScreen extends React.Component {
     }
 
     // GET VIN from NHTSA API 
-    submitVin() {
+    submitVin = () => {
         axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/${this.state.vin}?format=json`)
             .then(res => {
                 if(res.data.Results[6].Value && res.data.Results[8].Value && res.data.Results[9].Value && res.data.Results[13].Value) {
@@ -53,7 +53,7 @@ export default class PersVehScreen extends React.Component {
     }
 
     // Validate Veh entered against NHTSA's GetModelsForMakeYear API and set to Async Storage
-    validateVeh() {
+    validateVeh = () => {
         if(this.state.make && this.state.model && this.state.year) {
             axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${this.state.make}/modelyear/${this.state.year}?format=json`)
             .then((res) => {
@@ -92,7 +92,7 @@ export default class PersVehScreen extends React.Component {
         }
     }
 
-    displayVeh(veh) {
+    displayVeh = (veh) => {
         (async () => {
             const loaded = JSON.parse(await AsyncStorage.getItem(veh));
             this.setState({
@@ -110,7 +110,7 @@ export default class PersVehScreen extends React.Component {
         })();
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         (async () => {
             const keys = await AsyncStorage.getAllKeys();
             const result = await AsyncStorage.multiGet(keys);
@@ -127,7 +127,7 @@ export default class PersVehScreen extends React.Component {
     }
 
     // User selects garage info which means all current vehicles are final and to be sent to DB
-    subToDB() {
+    subToDB = () => {
         (async () => {
             const keys = await AsyncStorage.getAllKeys();
             const result = await AsyncStorage.multiGet(keys);
@@ -153,7 +153,7 @@ export default class PersVehScreen extends React.Component {
         })();
     }
 
-    removeVehicle(year, make, model) {
+    removeVehicle = (year, make, model) => {
         (async () => {
             let key = `${year} ${make} ${model}`.toUpperCase();
             await AsyncStorage.removeItem(key);
@@ -170,7 +170,7 @@ export default class PersVehScreen extends React.Component {
         })();
     }
 
-    render() {
+    render = () => {
         return(
             <View>
                 {!this.state.verified && !this.state.status || this.state.verified && this.state.status ? 

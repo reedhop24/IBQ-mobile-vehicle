@@ -5,13 +5,13 @@ import axios from 'axios';
 export default class QuoteLookupScreen extends React.Component {
 
     constructor() {
-        super();
+        super(props);
         this.state = {
             quoteNumber: null
         }
     }
 
-    findQuote() {
+    findQuote = () => {
         // Learned the hard way that React Native cannot post to local host, so posting to IP address instead.
         axios.post('http://10.0.0.234:3000/find/getQuote', {
                 quoteNumber: this.state.quoteNumber
@@ -39,7 +39,7 @@ export default class QuoteLookupScreen extends React.Component {
 
     }
 
-    render() {
+    render = () => {
         return(
             <View>
             <View style={styles.inputContainer}>

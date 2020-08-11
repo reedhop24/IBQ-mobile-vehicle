@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
-const post = require('./routes/postVehpostVeh');
+const post = require('./routes/postVeh');
 const get = require('./routes/postQuote');
 const mongoose = require('mongoose');
 require('./services/cache');

@@ -5,7 +5,7 @@ import axios from 'axios';
 export default class QuoteLookupScreen extends React.Component {
 
     constructor() {
-        super(props);
+        super();
         this.state = {
             quoteNumber: null
         }

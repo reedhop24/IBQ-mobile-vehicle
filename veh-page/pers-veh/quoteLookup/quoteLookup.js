@@ -13,7 +13,7 @@ export default class QuoteLookupScreen extends React.Component {
 
     findQuote = () => {
         // Learned the hard way that React Native cannot post to local host, so posting to IP address instead.
-        axios.post('http://10.0.0.234:3000/find/getQuote', {
+        axios.post('http://${ipaddress}/find/getQuote', {
                 quoteNumber: this.state.quoteNumber
             })
             .then(res => {
